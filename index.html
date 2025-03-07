@@ -6,6 +6,7 @@
     <title>A SPECIAL FOR NOC</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div class="wrapper">
@@ -65,19 +66,37 @@
             }
         });
 
-        // Nút Yes
         document.getElementById("yesBTN").addEventListener("click", () => {
-            alert("Yeyy! Thankiuuu you're cute too, have fun today <3");
-            const heart = document.createElement("div");
-            heart.innerHTML = "💖";
-            heart.style.position = "absolute";
-            heart.style.fontSize = "50px";
-            heart.style.left = "50%";
-            heart.style.top = "50%";
-            heart.style.animation = "flyUp 2s ease-out";
-            document.body.appendChild(heart);
+    // Tạo trái tim bay lên
+    const heart = document.createElement("div");
+    heart.innerHTML = "🌸"; // Đổi icon trái tim thành hoa sakura
+    heart.style.position = "absolute";
+    heart.style.fontSize = "50px";
+    heart.style.left = "50%";
+    heart.style.top = "50%";
+    heart.style.transform = "translate(-50%, -50%)";
+    heart.style.animation = "flyUp 2s ease-out";
+    document.body.appendChild(heart);
 
+    // Xóa trái tim sau 2 giây
     setTimeout(() => heart.remove(), 2000);
+
+    // Hiển thị thông báo SweetAlert2 với icon GIF dễ thương
+    Swal.fire({
+        title: "Awww 🥰!",
+        html: `<p style="font-size: 18px;">You're cute too! Have a wonderful day 🌸💖</p>`,
+        imageUrl: "cat.gif",
+        imageWidth: 150,
+        imageHeight: 150,
+        background: "#fff0f5",
+        color: "#ff69b4",
+        confirmButtonText: "UwU 💕",
+        confirmButtonColor: "#ff69b4",
+        customClass: {
+            popup: "custom-alert",
+            confirmButton: "custom-button"
+        }
+    });
 });
 
         // Nút No chạy lung tung
