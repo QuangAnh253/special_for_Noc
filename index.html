@@ -68,8 +68,17 @@
         // Nút Yes
         document.getElementById("yesBTN").addEventListener("click", () => {
             alert("Yeyy! Thankiuuu you're cute too, have fun today <3");
-            window.location.reload();
-        });
+            const heart = document.createElement("div");
+            heart.innerHTML = "💖";
+            heart.style.position = "absolute";
+            heart.style.fontSize = "50px";
+            heart.style.left = "50%";
+            heart.style.top = "50%";
+            heart.style.animation = "flyUp 2s ease-out";
+            document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 2000);
+});
 
         // Nút No chạy lung tung
         document.getElementById("noBTN").addEventListener("mouseenter", (e) => {
