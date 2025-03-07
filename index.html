@@ -33,54 +33,37 @@
         <!-- Column 2 -->
         <div class="column2">
             <div class="separator-box">
-                <div class="audio-container" id="yt-container">
-                    <div id="player"></div> <!-- YouTube Player -->
+                <div class="audio-container">
+                    <audio id="backgroundMusic" src="music.mp3" preload="auto"></audio>
                 </div>
                 <h2>Do you think this letter is cute?</h2>
                 <div class="gif-container">
                     <img src="https://media.tenor.com/LRDMe1QpqFYAAAAC/cat-cute.gif" alt="GIF" class="gif-img">
-                  </div>
-                  <div style="height: 20px;"></div>
-                  <div class="button-container">
+                </div>
+                <div style="height: 20px;"></div>
+                <div class="button-container">
                     <button class="yesBTN" id="yesBTN">Yes</button>
                     <button class="noBTN" id="noBTN">No</button>
-                  </div>
-                  
+                </div>
             </div>
         </div>
     </div>
 
     <script>
         const envelope = document.getElementById("envelope");
+        const backgroundMusic = document.getElementById("backgroundMusic");
         let hasPlayed = false;
 
         envelope.addEventListener('click', () => {
             envelope.classList.toggle('flap');
-
+            
             if (!hasPlayed) {
                 hasPlayed = true;
-                if (player) {
-                    player.playVideo();
-                }
+                backgroundMusic.play().catch(error => {
+                    console.log("iOS chặn tự động phát nhạc, cần tương tác người dùng.", error);
+                });
             }
         });
-
-        // Load YouTube API
-        let tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        let firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-        let player;
-
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '0',
-                width: '0',
-                videoId: '4adZ7AguVcw',
-                playerVars: { 'autoplay': 0, 'playsinline': 1 }
-            });
-        }
 
         // Nút Yes
         document.getElementById("yesBTN").addEventListener("click", () => {
